@@ -1,4 +1,3 @@
-
 package de.pochert.challenge.utils
 
 import java.io.File
@@ -16,5 +15,14 @@ object FileUtils {
             return Pair(list1.sorted(), list2.sorted())
         }
         return Pair(list1, list2)
+    }
+
+    fun readNumberRows(filePath: String): List<List<Int>> {
+        return File(filePath).useLines { lines ->
+            lines.map { line ->
+                line.trim().split("\\s+".toRegex())
+                    .map { it.toInt() }
+            }.toList()
+        }
     }
 }
